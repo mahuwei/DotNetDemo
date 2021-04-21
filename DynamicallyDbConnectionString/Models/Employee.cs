@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,5 +20,8 @@ namespace DynamicallyDbConnectionString.Models {
 
     [DefaultValue(0)]
     public decimal Salary { get; set; }
+
+    [MaxLength(20)]
+    public string? MobileNo { get; set; }
   }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using DynamicallyDbConnectionString.Models;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,6 +29,8 @@ namespace DynamicallyDbConnectionString {
 
       services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
       services.AddTransient(CreateDbContext);
+
+      services.AddMediatR(typeof(Startup).Assembly);
     }
 
     private DemoDbContext CreateDbContext(IServiceProvider options) {
