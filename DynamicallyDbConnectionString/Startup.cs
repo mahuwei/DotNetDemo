@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using DynamicallyDbConnectionString.Customs;
 using DynamicallyDbConnectionString.Models;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +24,8 @@ namespace DynamicallyDbConnectionString {
     public void ConfigureServices(IServiceCollection services) {
       services.AddControllers();
       services.AddSwaggerGen(c => {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "DynamicallyDbConnectionString", Version = "v1" });
+        c.SwaggerDoc("v1",
+          new OpenApiInfo { Title = "DynamicallyDbConnectionString", Version = "v1" });
       });
 
 
@@ -31,6 +33,13 @@ namespace DynamicallyDbConnectionString {
       services.AddTransient(CreateDbContext);
 
       services.AddMediatR(typeof(Startup).Assembly);
+
+      // 全局注册异常过滤器
+      services.AddControllersWithViews(option => {
+        option.Filters.Add<ResultFilterAsync>();
+        //option.Filters.Add<ResultFilter>();
+        //option.Filters.Add<ActionFilter>();
+      });
     }
 
     private DemoDbContext CreateDbContext(IServiceProvider options) {

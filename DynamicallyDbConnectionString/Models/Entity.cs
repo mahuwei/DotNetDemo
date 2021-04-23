@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DynamicallyDbConnectionString.Models {
@@ -8,5 +8,7 @@ namespace DynamicallyDbConnectionString.Models {
 
     [Timestamp]
     public byte[]? RowFlag { get; set; }
+
+    public DateTime LastChange { get; set; }
   }
 }

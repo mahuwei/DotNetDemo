@@ -1,3 +1,26 @@
+### 测试多数据库
 get http://localhost:5000/dbtest HTTP/1.1
 content-type: application/json
 tenantId: aaa
+
+### 测试Filters Get: 成功执行
+GET http://localhost:5000/filters/get?id=3 HTTP/1.1
+content-type: application/json
+
+### 测试Filters Get: 执行失败执行
+GET http://localhost:5000/filters/get?id=12 HTTP/1.1
+content-type: application/json
+
+### 测试Filters Get: 运行出错
+GET http://localhost:5000/filters/get?id=-2 HTTP/1.1
+content-type: application/json
+
+### 测试Filters Post: 获取数组
+Post http://localhost:5000/maintain/filters/Post?id=3 HTTP/1.1
+content-type: application/json
+companyNo: 005
+
+### 测试Filters Post: 获取一条记录
+Post http://localhost:5000/maintain/filters/PostAll?id=8 HTTP/1.1
+content-type: application/json
+companyNo: 005
